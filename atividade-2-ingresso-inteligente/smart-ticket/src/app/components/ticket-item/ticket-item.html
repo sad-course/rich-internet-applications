@@ -1,0 +1,10 @@
+<h2>{{ eventName() }}</h2>
+<div>
+    <p> Quantidade: {{ tickets()}}</p>
+    <button type="button" (click)="increaseTicketCount()">+</button>
+    <button type="button" (click)="decreaseTicketCount()">-</button>
+
+    <input id="couponId" (keyup.enter)="onCouponInput($event)">
+
+    <button type="button" (click)="cancelTicket()">Cancelar</button>
+</div>

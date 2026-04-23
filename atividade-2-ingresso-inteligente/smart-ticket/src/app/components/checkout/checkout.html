@@ -1,0 +1,3 @@
+<app-ticket-item eventName="ETAL" [(tickets)]="ticketsQtd" (onEventCancel)="finishCheckout()"></app-ticket-item>
+<p>{{statusMessage()}}</p>
+<p>Total: R$ {{checkoutTotal()}}</p>
