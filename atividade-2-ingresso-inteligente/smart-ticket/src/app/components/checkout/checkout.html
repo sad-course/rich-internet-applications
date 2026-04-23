@@ -1,3 +1,46 @@
-<app-ticket-item eventName="ETAL" [(tickets)]="ticketsQtd" (onEventCancel)="finishCheckout()"></app-ticket-item>
+<app-ticket-item [(tickets)]="ticketsQtd" (onEventCancel)="finishCheckout()"></app-ticket-item>
 <p>{{statusMessage()}}</p>
+
+@if (ticketsQtd() == 0) {
+    <span>Seu carrinho está vazio</span>
+}@else {
+    @for (ticket of ticketsList(); track ticket.id) {
+        <div class="ticket">
+            <b>{{ticket.name}}</b>
+            <p>{{ticket.date | date:"dd/MM/yyyy"}}</p>
+            @switch (ticket.type) {
+                @case ("VIP") {
+                    <p>Acesso Total!</p>
+                }
+                @case ("MEIA") {
+                    <p>Obrigatório carteirinha</p>
+                }
+                @default {
+                    <p>Acesso Padrão</p>
+                }
+            }
+            <p>{{ticket.price | currency:'BRL':'symbol':'1.2-2'}}</p>
+            <p>{{ticket.description | resum}}</p>
+        </div>
+    }
+}
+
+
 <p>Total: R$ {{checkoutTotal()}}</p>
+
+@if(ticketsQtd() != 0){
+    <p>Você ganhou um brinde!</p>
+}
+
+<!-- Style -->
+
+<style>
+    .ticket{
+        background-color: #EBEBEB;
+        border: 1px solid #707070;
+        border-radius: 8px;
+        padding: 10px;
+
+        margin: 10px;
+    }
+</style>
