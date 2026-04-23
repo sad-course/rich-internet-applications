@@ -6,7 +6,7 @@ import { Card } from "./components/card/card";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Checkout, Card],
+  imports: [RouterOutlet, Checkout],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

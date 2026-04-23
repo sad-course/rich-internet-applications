@@ -1,11 +1,13 @@
-<app-ticket-item [(tickets)]="ticketsQtd" (onEventCancel)="finishCheckout()"></app-ticket-item>
+<app-card title="Checkout" class="card">
+
+<app-ticket-item eventName="ETAL" [(tickets)]="ticketsQtd" (onEventCancel)="finishCheckout()"></app-ticket-item>
 <p>{{statusMessage()}}</p>
 
 @if (ticketsQtd() == 0) {
     <span>Seu carrinho está vazio</span>
 }@else {
     @for (ticket of ticketsList(); track ticket.id) {
-        <div class="ticket">
+        <div class="ticket" [class]="{'exclusive': ticket.type === 'VIP'}">
             <b>{{ticket.name}}</b>
             <p>{{ticket.date | date:"dd/MM/yyyy"}}</p>
             @switch (ticket.type) {
@@ -21,6 +23,8 @@
             }
             <p>{{ticket.price | currency:'BRL':'symbol':'1.2-2'}}</p>
             <p>{{ticket.description | resum}}</p>
+
+            <div [style.width.%]="ticket.percentLot" [style.background]="barColor(ticket.percentLot)">...</div>
         </div>
     }
 }
@@ -32,6 +36,8 @@
     <p>Você ganhou um brinde!</p>
 }
 
+</app-card>
+
 <!-- Style -->
 
 <style>
@@ -42,5 +48,15 @@
         padding: 10px;
 
         margin: 10px;
+        width: 50%;
     }
+
+    .exclusive {
+        background-color: gold;
+    }
+
+    .lotPercentBar{
+        background-color: green;
+    }
+
 </style>
