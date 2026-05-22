@@ -1,0 +1,46 @@
+<div>
+    <form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
+
+        <div>
+            <label for="name">Nome:</label>
+            <input #nameRef="ngModel" [(ngModel)]="contact.name" type="text" name="name" id="name" required minlength="3">
+            @if (nameRef.invalid && nameRef.touched) {
+                @if(nameRef.errors?.['required']){
+                    <span>Nome é obrigatório.</span>
+                }
+            }
+        </div>
+        
+        <div>
+            <label for="email">E-mail:</label>
+            <input #emailRef="ngModel" [(ngModel)]="contact.email" type="email" name="email" id="email" required>
+            @if (emailRef.invalid && emailRef.touched) {
+                @if(emailRef.errors?.['required']){
+                    <span>E=mail é obrigatório.</span>
+                }
+            }
+        </div>
+
+        <div>
+            <label for="subject">Assunto:</label>
+            <input #subjectRef="ngModel" [(ngModel)]="contact.subject" type="text" name="subject" id="subject" required>
+            @if (subjectRef.invalid && subjectRef.touched) {
+                @if(subjectRef.errors?.['required']){
+                    <span>Assunto é obrigatório.</span>
+                }
+            }
+        </div>
+
+        <div>
+            <label for="message">Mensagem:</label>
+            <input #messageRef="ngModel" [(ngModel)]="contact.message" type="text" name="message" id="message" required minlength="20">
+            @if (messageRef.invalid && messageRef.touched) {
+                @if(messageRef.errors?.['required']){
+                    <span>Mensagem é obrigatório.</span>
+                }
+            }
+        </div>
+
+        <button type="submit" [disabled]="!contactForm.valid">Send</button>
+    </form>
+</div>
