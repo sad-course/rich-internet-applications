@@ -9,5 +9,5 @@ export function cpfValid(control: AbstractControl): ValidationErrors | null {
 
     const isValid = /^[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}$/.test(value);
 
-    return value ? null : { cpfInvalid: true}
+    return isValid ? null : { cpfInvalid: true}
 }

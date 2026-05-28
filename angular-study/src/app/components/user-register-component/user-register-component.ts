@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 
 import {passwordValidator} from "../../validators/password-validator";
 import {passwordIsEqual} from "../../validators/password-is-equal";
+import { cpfValid } from '../../validators/cpf-validator';
 
 @Component({
   selector: 'app-user-register-component',
@@ -14,7 +15,7 @@ export class UserRegisterComponent {
   userForm = new FormGroup({
     name: new FormControl("", [Validators.required, Validators.minLength(5), Validators.maxLength(100)]),
     email: new FormControl("", [Validators.required, Validators.email]),
-    cpf: new FormControl("", [Validators.required]),
+    cpf: new FormControl("", [Validators.required, cpfValid]),
     birthDate: new FormControl(""),
     password: new FormControl("", [Validators.required, Validators.minLength(8), passwordValidator]),
     confirmPassword: new FormControl("", [Validators.required]),

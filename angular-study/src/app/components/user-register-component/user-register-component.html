@@ -38,7 +38,7 @@
                 <span>O cpf é obrigatório</span>
             }
         
-            @if(cpf?.errors?.['cpf']){
+            @if(cpf?.errors?.['cpfInvalid']){
                 <span>Informe cpf com formato válido.</span>
             }
         }
