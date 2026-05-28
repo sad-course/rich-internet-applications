@@ -7,7 +7,7 @@
         >
         @if(name?.invalid && name?.touched){
             @if(name?.errors?.['required']){
-                <span>O nome é obrigatório</span>
+                <span class="bg-red-500" >O nome é obrigatório</span>
             }
         }
 
@@ -19,11 +19,11 @@
         >
         @if(email?.invalid && email?.touched){
             @if(email?.errors?.['required']){
-                <span>O email é obrigatório</span>
+                <span class="bg-red-500">O email é obrigatório</span>
             }
         
             @if(email?.errors?.['email']){
-                <span>Informe e-mail com formato válido.</span>
+                <span class="bg-red-500">Informe e-mail com formato válido.</span>
             }
         }
 
@@ -35,11 +35,11 @@
         >
         @if(cpf?.invalid && cpf?.touched){
             @if(cpf?.errors?.['required']){
-                <span>O cpf é obrigatório</span>
+                <span class="bg-red-500">O cpf é obrigatório</span>
             }
         
             @if(cpf?.errors?.['cpfInvalid']){
-                <span>Informe cpf com formato válido.</span>
+                <span class="bg-red-500">Informe cpf com formato válido.</span>
             }
         }
 
@@ -50,7 +50,7 @@
         >
         @if(birthDate?.invalid && birthDate?.touched){
             @if(birthDate?.errors?.['required']){
-                <span>A data de nascimento é obrigatório</span>
+                <span class="bg-red-500" >A data de nascimento é obrigatório</span>
             }
 
         }
@@ -62,21 +62,21 @@
 
         @if(password?.invalid && password?.touched){
             @if(password?.errors?.['required']){
-                <span>A senha é obrigatória</span>
+                <span class="bg-red-500">>A senha é obrigatória</span>
             }
 
             @if(password?.errors?.['weakPassword']){
-                <span>A senha deve conter pelo menos um dígito e uma letra maiúscula</span>
+                <span class="bg-red-500" >A senha deve conter pelo menos um dígito e uma letra maiúscula</span>
             }
 
             @if(password?.errors?.['minLength']){
-                <span>A senha deve conter 8 caracteres</span>
+                <span class="bg-red-500" >A senha deve conter 8 caracteres</span>
             }
 
         }
 
         @if(userForm.errors?.['passwordsDiffers'] && userForm.get('confirmPassword')?.touched){
-            <span>As senhas não coincidem</span>
+            <span class="bg-red-500" >As senhas não coincidem</span>
         }
             
         <label for="confirmPassword">Confirme a senha:</label>
@@ -86,7 +86,7 @@
 
         @if(confirmPassword?.invalid && confirmPassword?.touched){
             @if(confirmPassword?.errors?.['required']){
-                <span>Confirme sua senha!</span>
+                <span class="bg-red-500" >Confirme sua senha!</span>
             }
         }
 
@@ -101,7 +101,7 @@
         </select>
         @if(profile?.invalid && profile?.touched){
             @if(profile?.errors?.['required']){
-                <span>Perfil é obrigatório</span>
+                <span class="bg-red-500">Perfil é obrigatório</span>
             }
         }
 

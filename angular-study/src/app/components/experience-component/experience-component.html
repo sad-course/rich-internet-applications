@@ -1,0 +1,57 @@
+<div class="flex w-full justify-center">
+    <form [formGroup]="experienceForm" (ngSubmit)="onSubmit()" class="flex justify-center flex-col gap-2 w-2xl">
+
+   <div formArrayName="experiences" class="flex flex-col gap-4">
+      <h3 class="text-lg font-bold">Experiências Profissionais:</h3>
+
+      @for (experience of experiences.controls; track $index) {
+        <div [formGroupName]="$index" class="border p-4 rounded bg-gray-50 relative flex flex-col gap-3">
+          
+          <div class="flex justify-between items-center">
+            <span class="font-semibold text-sm text-gray-500">Experiência #{{ $index + 1 }}</span>
+            <button type="button" (click)="removeExperience($index)" class="bg-red-500 text-white px-2 py-1 rounded text-sm hover:bg-red-600">
+              Remover
+            </button>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label>Empresa:</label>
+            <input type="text" formControlName="enterprise" placeholder="Empresa onde trabalhou" class="border p-2 rounded bg-white" />
+            @if (experience.get('enterprise')?.invalid && experience.get('enterprise')?.touched) {
+              <small class="text-red-600">A empresa é obrigatória.</small>
+            }
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label>Cargo:</label>
+            <input type="text" formControlName="jobPosition" placeholder="Ex: Desenvolvedor Software" class="border p-2 rounded bg-white" />
+            @if (experience.get('jobPosition')?.invalid && experience.get('jobPosition')?.touched) {
+              <small class="text-red-600">O cargo é obrigatório.</small>
+            }
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <div class="flex flex-col gap-1">
+              <label>Ano de Início:</label>
+              <input type="number" formControlName="initDate" placeholder="Ex: 2020" class="border p-2 rounded bg-white" />
+              @if (experience.get('initDate')?.invalid && experience.get('initDate')?.touched) {
+                <small class="text-red-600">
+                  @if (experience.get('initDate')?.errors?.['required']) { O ano de início é obrigatório. }
+                  @if (experience.get('initDate')?.errors?.['min']) { O ano mínimo permitido é 1990. }
+                </small>
+              }
+            </div>
+
+            <div class="flex flex-col gap-1">
+              <label>Ano de Fim (Opcional):</label>
+              <input type="number" formControlName="endDate" placeholder="Ex: 2024" class="border p-2 rounded bg-white" />
+            </div>
+          </div>
+
+        </div>
+      } @empty {
+        <p class="text-gray-500 italic">Nenhuma experiência adicionada. Clique no botão abaixo para adicionar.</p>
+      }
+    </div>
+    </form>
+</div>
